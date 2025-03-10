@@ -1,0 +1,14 @@
+services:
+  backend:
+    image: task-manager-backend
+    build:
+      context: ./task_manager_server
+      dockerfile: Dockerfile  
+    container_name: task-manager-backend
+    volumes:
+      # - ./backend:/app
+      # TODO: create volume for the static files
+      - ./task_manager_server:/task_manager_server
+    ports:
+      - "8000:8000"
+      
