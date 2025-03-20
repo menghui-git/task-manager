@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User as DjangoUser, Group as DjangoGroup
 
+from task_manager.managers import IssueManager
+
 class User(DjangoUser):
     user_id = models.AutoField(primary_key=True)
     avatar = models.FileField(null=True, blank=True)
@@ -43,6 +45,7 @@ class Status(models.Model):
 
 class Label(models.Model):
     label_id = models.AutoField(primary_key=True)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
     name = models.CharField(max_length=15)
 
 
@@ -59,14 +62,6 @@ class Issue(models.Model):
         MEDIUM = 3
         LOW = 4
         LOWEST = 5
-
-    # PRIORITYES = {
-    #     1: 'Highest',
-    #     2: 'High',
-    #     3: 'Medium',
-    #     4: 'Low',
-    #     5: 'Lowest',
-    # }
     
     issue_id = models.AutoField(primary_key=True)
     serial_number = models.IntegerField()
@@ -85,6 +80,8 @@ class Issue(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     archived_at = models.DateTimeField(null=True, blank=True)
+
+    objects = IssueManager()
 
 
 class WatchList(models.Model):

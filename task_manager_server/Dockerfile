@@ -10,6 +10,7 @@ RUN python3 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 COPY requirements.txt .
 RUN source $VIRTUAL_ENV/bin/activate && pip3 install -r requirements.txt
-# copy the rest of the files
+# prepare server enviroment
 COPY . .
+CMD python3 manage.py migrate
 ENTRYPOINT ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
