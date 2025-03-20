@@ -1,14 +1,15 @@
 # FEATURE SPEC
 1. Login
 2. Dashboard
-    1. Drag,drop cards
-    2. Search
-    3. Filter
+    1. drag,drop cards
+    2. search
+    3. filter
 3. Issue card
     1. create/edit/delete
-    2. move, order
-    3. Update field 
+    2. update fields
         1. subtasks
+    3. change status
+    4. order issues
 4. Comment
     1. create/edit/delete
 5. Text editor
